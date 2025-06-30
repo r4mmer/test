@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Call sync action
-        uses: HathorNetwork/actions/release/sync
+        uses: HathorNetwork/actions/release/sync@master
         with:
           github_token: ${{ secrets.RELEASE_TOKEN }}
           target_tag: ${{ github.ref_type == 'tag' && github.ref_name || '' }}
