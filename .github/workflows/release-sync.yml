@@ -1,0 +1,17 @@
+name: My Test Workflow
+
+# Triggered when a new version is released publicly
+on:
+  release:
+    types: [ released ]
+
+jobs:
+  create-sync-pr:
+    name: Create release sync PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call sync action
+        uses: HathorNetwork/actions/release/sync
+        with:
+          github_token: ${{ secrets.RELEASE_TOKEN }}
+          target_tag: ${{ github.ref_type == 'tag' && github.ref_name || '' }}
