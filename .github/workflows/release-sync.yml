@@ -9,11 +9,12 @@ jobs:
   create-sync-pr:
     name: Create release sync PR
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Call sync action
         uses: HathorNetwork/actions/release/sync@master
-        permissions:
-          contents: write
         with:
           github_token: ${{ secrets.RELEASE_TOKEN }}
           target_tag: ${{ github.ref_type == 'tag' && github.ref_name || '' }}
